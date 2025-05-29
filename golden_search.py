@@ -1,0 +1,66 @@
+def golden_search_recursive(
+    array, 
+    value, 
+    a=0, 
+    b=None, 
+    eps=0.001, 
+    prev_x1=None,
+    prev_x2=None
+):
+    if b is None:
+        b = len(array)
+
+    if abs(b - a) <= eps:
+        return int((a + b) / 2)
+        
+    phi = (1 + 5**0.5) / 2
+
+    if prev_x1 is None:
+        x1 = int(b - (b - a) / phi)
+    else:
+        x1 = prev_x1
+
+    if prev_x2 is None:
+        x2 = int(a + (b - a) / phi)
+    else:
+        x2 = prev_x2
+        
+    if array[x1] == value:
+        return x1
+    elif array[x2] == value:
+        return x2
+    elif value < array[x1]:
+        return golden_search_recursive(array, value, a, x1, eps, None, x1)
+    elif value > array[x2]:
+        return golden_search_recursive(array, value, x2, b, eps, x2, None)
+    else:
+        return golden_search_recursive(array, value, x1, x2, eps, x2, None)
+
+def test_golden_search():
+    # Test case 1: Basic search in sorted array
+    arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    assert golden_search_recursive(arr1, 5) == 4
+    assert golden_search_recursive(arr1, 1) == 0
+    assert golden_search_recursive(arr1, 10) == 9
+
+    # Test case 2: Search in array with repeated elements
+    arr2 = [1, 2, 2, 2, 3, 3, 4, 4, 4, 5]
+    assert golden_search_recursive(arr2, 2) in [1, 2, 3]
+    assert golden_search_recursive(arr2, 4) in [6, 7, 8]
+
+    # Test case 3: Search in array with single element
+    arr3 = [1]
+    assert golden_search_recursive(arr3, 1) == 0
+
+    # Test case 4: Search in large sorted array
+    arr4 = list(range(1000))
+    assert golden_search_recursive(arr4, 500) == 500
+    assert golden_search_recursive(arr4, 999) == 999
+    assert golden_search_recursive(arr4, 0) == 0
+
+    print("All test cases passed!")
+
+# Run the tests
+if __name__ == "__main__":
+    test_golden_search()
+
