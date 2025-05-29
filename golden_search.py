@@ -13,14 +13,15 @@ def golden_search(
         return int((a + b) / 2)
         
     phi = (1 + 5**0.5) / 2
+    length = b - a
 
     if prev_x1 is None:
-        x1 = int(b - (b - a) / phi)
+        x1 = int(b - length / phi)
     else:
         x1 = prev_x1
 
     if prev_x2 is None:
-        x2 = int(a + (b - a) / phi)
+        x2 = int(a + length / phi)
     else:
         x2 = prev_x2
         
