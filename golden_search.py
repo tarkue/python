@@ -10,7 +10,7 @@ def golden_search(
         b = len(array)
 
     if abs(b - a) == 0:
-        return int((a + b) / 2)
+        return a
         
     phi = (1 + 5**0.5) / 2
     length = b - a
