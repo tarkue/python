@@ -1,3 +1,5 @@
+PHI = (1 + 5**0.5) / 2
+
 def golden_search(
     array, 
     value, 
@@ -11,17 +13,16 @@ def golden_search(
 
     if abs(b - a) == 0:
         return a
-        
-    phi = (1 + 5**0.5) / 2
+    
     length = b - a
 
     if prev_x1 is None:
-        x1 = int(b - length / phi)
+        x1 = int(b - length / PHI)
     else:
         x1 = prev_x1
 
     if prev_x2 is None:
-        x2 = int(a + length / phi)
+        x2 = int(a + length / PHI)
     else:
         x2 = prev_x2
         
