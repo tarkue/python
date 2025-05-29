@@ -55,6 +55,15 @@ def test_golden_search():
     # Test case 4: Search in large sorted array
     arr4 = list(range(1000))
     assert golden_search(arr4, 500) == 500
+    assert golden_search(arr4, 501) == 501
+    assert golden_search(arr4, 499) == 499
+    assert golden_search(arr4, 502) == 502
+    assert golden_search(arr4, 498) == 498
+    assert golden_search(arr4, 503) == 503
+    assert golden_search(arr4, 497) == 497
+    assert golden_search(arr4, 504) == 504
+    assert golden_search(arr4, 496) == 496
+    assert golden_search(arr4, 505) == 505
     assert golden_search(arr4, 999) == 999
     assert golden_search(arr4, 0) == 0
 
